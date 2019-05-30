@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomPreloaderService } from './custom-preloader.service';
 
-const routes: Routes = [
+/* const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   {
@@ -12,6 +12,21 @@ const routes: Routes = [
     data: {preload: true, delay: 500}
   },
   { path: 'fornecedores', loadChildren: './fornecedores/fornecedores.module#FornecedoresModule' }
+]; */
+
+/* Angular 8+ */
+const routes: Routes = [
+  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'clientes',
+    loadChildren: './clientes/clientes.module#ClientesModule',
+    data: {preload: true, delay: 500}
+  },
+  {
+    path: 'fornecedores',
+    loadChildren: () => import('./fornecedores/fornecedores.module').then(mod => mod.FornecedoresModule)
+  }
 ];
 
 @NgModule({
